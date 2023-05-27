@@ -14,7 +14,7 @@ class Solution(object):
                 
             else:
                 r, l = stack.pop(), stack.pop()
-                print( r, l )
+                
                 if token == "+":
                     stack.append( l+r )
                 elif token == "-":
