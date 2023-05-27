@@ -9,7 +9,7 @@ class Solution:
         # initialize dp
         dp = [1] * len(nums)
         
-        for j in range(len(nums)):
+        for j in range(1,len(nums)):
             for k in range(j):
                 if nums[j] > nums[k]:
                     dp[j] = max( dp[k] + 1, dp[j] )
