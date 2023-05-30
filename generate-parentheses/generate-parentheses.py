@@ -3,7 +3,6 @@ class Solution:
         combinations = []
         
         def backtrack(path, idx, size_left_paren, size_right_paren):
-            print( path )
             
             if idx >= n and (size_left_paren > n or size_right_paren > n ):
                 return
