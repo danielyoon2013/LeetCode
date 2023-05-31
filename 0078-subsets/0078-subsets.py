@@ -1,28 +1,16 @@
-import numpy as np
-
-class Solution(object):
-    def subsets(self, nums):
-        """
-        :type nums: List[int]
-        :rtype: List[List[int]]
-        """
+class Solution:
+    def subsets(self, nums: List[int]) -> List[List[int]]:
+        combinations = []
         
-        def recursive( result, depth ):
-            if depth <= len(nums)-1 :
-
-                num = nums[depth]
-                new_result = copy.deepcopy(result)
-                for e in new_result:
-                    e.append(num)
-
-                result = result + new_result
-                return recursive( result, depth+1 )
-
-            else:
-                return result
-
-
-        return recursive( [[]], 0 )
-
-
+        def backtrack( path, not_used ):
+            if len(not_used) == 0:
+                combinations.append(path)
+                return
             
+            element = not_used.pop()
+            backtrack( path + [element], not_used )
+            backtrack( path, not_used )
+            not_used.append(element)
+            
+        backtrack([], nums)
+        return combinations
