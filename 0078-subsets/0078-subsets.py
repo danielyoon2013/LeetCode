@@ -4,7 +4,7 @@ class Solution:
         
         def backtrack( path, not_used ):
             if len(not_used) == 0:
-                combinations.append(path)
+                combinations.append(path[:])
                 return
             
             element = not_used.pop()
