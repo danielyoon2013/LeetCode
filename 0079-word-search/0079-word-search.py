@@ -1,44 +1,54 @@
-import numpy as np
-from collections import Counter
-
-class Solution(object):
-    def exist(self, board, word):
-        """
-        :type board: List[List[str]]
-        :type word: str
-        :rtype: bool
-        """
-
-        cnt = Counter(word)
-            
-        if cnt[word[0]] > cnt[word[-1]]:                             
-             word = word[::-1]
+class Solution:
+    def exist(self, board: List[List[str]], word: str) -> bool:
+        n = len(board)
+        m = len(board[0])
         
-        m, n = len( board ), len( board[0] )
-        
-        def recursive(i,j,depth):
+        # My solution
+        '''
+        def backtrack(i, j, idx):
             
-            if depth == len(word):
-                return True 
+            if i < 0 or j  < 0 or i >= n or j >= m or board[i][j] != word[idx] or board[i][j] == "#" :
+                return False
             
-            if 0 <= i < m and 0 <= j < n and board[i][j] == word[depth]:
-                board[i][j] = '#'
-                moves = [ (i+1,j), (i-1,j), (i,j+1), (i,j-1) ]
-                found = any( recursive(ii,jj,depth+1) for ii,jj in moves)
-                board[i][j] = word[depth]
-                return found
-                
-            return False
-        
-        # Loop through all elements in the box as starting point
-        for i in range(m):
-            for j in range(n):
-                if recursive(i,j,0) :
+            if board[i][j] == word[idx] and idx == len(word)-1:
+                return True
+            
+            for move in [ (0,1), (1,0), (0,-1), (-1,0) ]:
+                temp = board[i][j]
+                board[i][j] = "#"
+                if backtrack(i+move[0], j+move[1], idx+1):
                     return True
-    
+                board[i][j] = temp
+                
+        for i in range(n):
+            for j in range(m):
+                if backtrack(i, j, 0):
+                    return True
+                
         return False
-
-
-    
-    
+        '''
+        # Cleaner
+        def backtrack(i, j, idx):
+            
+            if i < 0 or j  < 0 or i >= n or j >= m or board[i][j] != word[idx] :
+                return False
+            
+            if board[i][j] == word[idx] and idx == len(word)-1:
+                return True
+            
+            board[i][j] = "#"
+            for move_x, move_y in [ (0,1), (1,0), (0,-1), (-1,0) ]:
+                if backtrack(i+move_x, j+move_y, idx+1):
+                    return True
+            board[i][j] = word[idx]
+            
+            return False
+                
+        for i in range(n):
+            for j in range(m):
+                if backtrack(i, j, 0):
+                    return True
+                
+        return False
         
+
