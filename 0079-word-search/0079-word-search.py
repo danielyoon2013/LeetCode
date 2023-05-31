@@ -51,4 +51,6 @@ class Solution:
                 
         return False
         
+        # time complexity = O( length of board X 3 ** length of word)
+        # space complexity = O( length of word ), because it is dominated by recursion call of backtracking function
 
