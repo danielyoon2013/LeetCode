@@ -19,6 +19,6 @@ class Solution:
                 recursive( node.right )
         
         recursive( root )
-        print( in_order_arr )
+
         return in_order_arr[k-1]
                 
