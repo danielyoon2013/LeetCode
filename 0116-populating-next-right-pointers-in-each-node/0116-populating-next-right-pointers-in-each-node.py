@@ -34,6 +34,27 @@ class Solution:
                     Q.append( node.right )
                     
         return root
+    
+    '''
+        if not root:
+            return root
+            
+        leftmost = root:
+        
+        while leftmost.left:
+            head = leftmost
+            while head:
+                # connection1
+                head.left.next = head.right
+                
+                # connection2
+                if head.next:
+                    head.right.next = head.next.left
+                
+                head = head.next
+            
+            leftmost = leftmost.left
+    '''
         
                 
                 
