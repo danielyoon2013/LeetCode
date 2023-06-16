@@ -33,29 +33,8 @@ class Solution:
         s = "1"
         while n-1:
             s = mergeMap( createMap( s ) ) 
-            print(s)
             n -= 1
             
         return s
             
         
-        '''
-        if n == 1:
-            return "1"
-        
-        curr = "11"
-        
-        for i in range(n-1):
-            new_curr = ""
-            multplier = 1
-            for idx in range(1,len(curr)):
-                if curr[idx] != curr[idx-1]:
-                    new_curr += curr[idx] + str(multiplier)
-                    multiplier = 1
-                else:
-                    multplier += 1 
-                    
-            curr = new_curr
-                     
-        return new_curr
-        '''
